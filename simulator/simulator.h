@@ -18,6 +18,12 @@ class Node{
 	public:
 		Node* before;
 		Node* after;
+		Node(){
+			this->intValue = NULL;
+			this->stringValue = NULL;
+			this->before = NULL;
+			this->after = NULL;
+		}
 		Node(int i){
 			this->intValue = new int(i);
 			this->stringValue = NULL;
@@ -105,6 +111,10 @@ class OutputBox: public Box{
 		}
 		void receive(Node* element){
 			this->push(element);
+		}
+		void display(){
+			this->reverse();
+			cout << this->toString();
 		}
 };
 

@@ -5,23 +5,23 @@
 
 using namespace std;
 
-void generator(Input* input){
+void generator(InputBox* input){
 	random_device rd;
 	int N = 3;
 	for(int i = 0; i < N; i++){
 		int number = rd() % 10;
-		input->set(number);
+		input->push(number);
 	}
 }
 
 int main(){
 	Human human;
-	Input input;
-	Output output;
+	InputBox input;
+	OutputBox output;
 
 	generator(&input);
 	input.display();
-	while(!input.isEmpty()){
+	while(!input.empty()){
 	 	human.inbox(&input);
 		human.outbox(&output);
 	}
