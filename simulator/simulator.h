@@ -1,116 +1,136 @@
 #ifndef SIMULATOR_H
 #define SIMULATOR_H
 #include <iostream>
-#include <stack>
+#include <list>
+#include <cstdlib>
+#include <string>
+
+#define STRING_TYPE "string"
+#define INT_TYPE "int"
 
 using namespace std;
 
-class Input{
+class Node{
 	private:
-		std::stack<int> input;
+		// Store the values of different types into different pointers
+		int* intValue;
+		string* stringValue;
 	public:
-		int provide(){
-			if(!this->input.empty()){
-				int top = this->input.top();
-				this->input.pop();
-				return top;
-			}else{
+		Node* before;
+		Node* after;
+		Node(int i){
+			this->intValue = new int(i);
+			this->stringValue = NULL;
+			this->before = NULL;
+			this->after = NULL;
+		}
+
+		Node(string s){
+			this->stringValue = new string(s);
+			this->intValue = NULL;
+			this->before = NULL;
+			this->after = NULL;
+		}
+
+		string getRep(){
+			if(this->stringValue == NULL){
+					return std::to_string(*(this->intValue));
+			}else if(this->intValue == NULL){
+				return *(this->stringValue);
 			}
 		}
 
-		void set(int element){
-			this->input.push(element);
+		void destroy(){
+			this->before = NULL;
+			this->after = NULL;
+			delete this->intValue;
+			delete this->stringValue;
+		}
+};
+
+class Box{
+	private:
+	public:
+		std::list<Node> elements;
+		bool empty(){
+			return this->elements.empty();
 		}
 
-		bool isEmpty(){
-			return this->input.empty();
+		void push(Node element){
+			this->elements.push_front(element);
+		}
+		void push(Node* element){
+			this->elements.push_front(*element);
+		}
+
+		void pop(){
+			this->elements.pop_front();
+		}
+
+		Node top(){
+			return this->elements.front();
+		}
+
+		void reverse(){
+			this->elements.reverse();
+		}
+
+		string toString(){
+			string rep = "";
+			for(std::list<Node>::iterator it = this->elements.begin(); it != this->elements.end(); it++){
+				rep += (it->getRep() + " ");
+			}
+			rep += "\n";
+			return rep;
 		}
 
 		void display(){
-			cout << "The Input:" << endl;
-			std::stack<int> tmp;
-
-			// Pop each element and store them in another stack
-			while(!this->input.empty()){
-				int element = this->input.top();
-				this->input.pop();
-				tmp.push(element);
-				cout << element << " ";
-			}
-
-			// Put the elements back
-			while(!tmp.empty()){
-				this->input.push(tmp.top());
-				tmp.pop();
-			}
-
-			cout << endl;
+			cout << this->toString();
 		}
-
 };
 
-class Output{
-	private:
-		std::stack<int> output;
+class InputBox: public Box{
 	public:
-		void receive(int element){
-			this->output.push(element);
-		}
-
-		int get(){
-			if(!this->output.empty()){
-				int top = this->output.top();
-				this->output.pop();
-				return top;
-			}else{
-			}
-		}
-
-
-		void display(){
-			cout << "The output:" << endl;
-			std::stack<int> tmp;
-
-			// Pop each element and store them in another stack
-			while(!this->output.empty()){
-				tmp.push(this->output.top());
-				this->output.pop();
-			}
-
-			// Put the elements back
-			while(!tmp.empty()){
-				cout << tmp.top() << " ";
-				this->output.push(tmp.top());
-				tmp.pop();
-			}
-
-			cout << endl;
+		Node provide(){
+			Node result = this->top();
+			this->pop();
+			return result;
 		}
 };
+
+class OutputBox: public Box{
+	public:
+		void receive(Node element){
+			this->push(element);
+		}
+		void receive(Node* element){
+			this->push(element);
+		}
+};
+
 
 class Human{
 	private:
-		int inHand;
+		Node inHand;
 		bool isHaving;
-	public:
-		void grab(int element){
+		void grab(Node element){
 			this->inHand = element;
 			this->isHaving = true;
 		}
-
-		void inbox(Input* input){
-			this->inHand = input->provide();
+	public:
+		void inbox(InputBox* ib){
+			this->inHand = ib->provide();
 			this->isHaving = true;
 		}
 
-		void outbox(Output* output){
+		void outbox(OutputBox* ob){
 			if(this->isHaving){
-				output->receive(this->inHand);
+				ob->receive(this->inHand);
 				this->isHaving = false;
 			}
 		}
 
-		int getInHand(){
+		Node getInHand(){
 			if(this->isHaving){
 				return this->inHand;
 			}else{

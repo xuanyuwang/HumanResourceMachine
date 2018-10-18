@@ -3,27 +3,19 @@
 
 using namespace std;
 
-// Todo
-void testTheStackHadBeenInitialized(Input input){
+void testInput(){
+	InputBox ib;
+	ib.push(new Node(4));
+	assert(ib.provide().getRep().compare("4") == 0);
 }
 
-void testInputSet(Input input){
-	input.set(3);
-	input.set(4);
-	input.set(5);
-	input.display();
-}
-
-void testOutputSet(Output output){
-	output.receive(3);
-	output.receive(4);
-	output.receive(5);
-	output.display();
+void testOutput(){
+	OutputBox ob;
+	ob.receive(new Node(3));
+	assert(ob.top().getRep().compare("3") == 0);
 }
 
 int main(){
-	Input input;
-	Output output;
-	testInputSet(input);
-	testOutputSet(output);
+	testInput();
+	testOutput();
 }
