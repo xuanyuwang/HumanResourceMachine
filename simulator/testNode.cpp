@@ -14,8 +14,13 @@ void testStringNode(){
 	Node *n = new Node(s);
 	assert(!s.compare(n->getRep()));
 }
+ void testEmptyNode(){
+	 Node* n = new Node();
+	assert(!(n->getRep().compare("empty node")));
+ }
 
 int main(){
 	testIntNode();
 	testStringNode();
+	testEmptyNode();
 }

@@ -5,9 +5,6 @@
 #include <cstdlib>
 #include <string>
 
-#define STRING_TYPE "string"
-#define INT_TYPE "int"
-
 using namespace std;
 
 class Node{
@@ -39,10 +36,12 @@ class Node{
 		}
 
 		string getRep(){
-			if(this->stringValue == NULL){
-					return std::to_string(*(this->intValue));
-			}else if(this->intValue == NULL){
+			if(this->stringValue == NULL && this->intValue != NULL){
+				return std::to_string(*(this->intValue));
+			}else if(this->intValue == NULL && this->stringValue != NULL){
 				return *(this->stringValue);
+			}else{
+				return string("empty node");
 			}
 		}
 
@@ -147,5 +146,10 @@ class Human{
 			}
 		}
 };
+
+Node* makeCarpets(int quantity){
+	Node* carpets = new Node[quantity];
+	return carpets;
+}
 
 #endif
