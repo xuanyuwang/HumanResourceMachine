@@ -55,21 +55,36 @@ class Node{
 
 class Box{
 	private:
+		int length;
 	public:
 		std::list<Node> elements;
+
+		Box(){
+			this->length = 0;
+		}
+
+		Box(int numberOfNodes){
+			for(int i = 0; i < numberOfNodes; i++){
+				this->push(new Node());
+			}
+		}
+
 		bool empty(){
 			return this->elements.empty();
 		}
 
 		void push(Node element){
 			this->elements.push_front(element);
+			this->length++;
 		}
 		void push(Node* element){
 			this->elements.push_front(*element);
+			this->length++;
 		}
 
 		void pop(){
 			this->elements.pop_front();
+			this->length--;
 		}
 
 		Node top(){
@@ -91,6 +106,10 @@ class Box{
 
 		void display(){
 			cout << this->toString();
+		}
+
+		int getLength(){
+			return this->length;
 		}
 };
 
@@ -147,8 +166,8 @@ class Human{
 		}
 };
 
-Node* makeCarpets(int quantity){
-	Node* carpets = new Node[quantity];
+Box* makeCarpets(int quantity){
+	Box* carpets = new Box(quantity);
 	return carpets;
 }
 

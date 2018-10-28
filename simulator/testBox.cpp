@@ -55,10 +55,16 @@ void testReverse(){
 	assert(b.toString().compare("3 4 ok \n") == 0);
 }
 
+void testBoxInitWithQuantity(){
+	Box* b = new Box(10);
+	assert(b->getLength() == 10);
+}
+
 int main(){
 	testEmpty();
 	testPush();
 	testPop();
 	testTop();
 	testReverse();
+	testBoxInitWithQuantity();
 }
