@@ -143,6 +143,7 @@ class Carpets: public Box{
 			int counter = 0;
 			for(it = this->elements.begin(); it != this->elements.end(); it++){
 				if(counter < position){
+					counter++;
 				}else{
 					return *it;
 				}
@@ -159,6 +160,10 @@ class Human{
 			this->isHaving = true;
 		}
 	public:
+		void copyfrom(Carpets* carpets, int pos){
+			this->grab(carpets->at(pos));
+		}
+
 		void inbox(InputBox* ib){
 			this->inHand = ib->provide();
 			this->isHaving = true;
