@@ -1,5 +1,5 @@
 #include <iostream>
-#include "simulator.h"
+#include "./InputBox.h"
 
 using namespace std;
 
@@ -9,13 +9,7 @@ void testInput(){
 	assert(ib.provide().getRep().compare("4") == 0);
 }
 
-void testOutput(){
-	OutputBox ob;
-	ob.receive(new Node(3));
-	assert(ob.top().getRep().compare("3") == 0);
-}
 
 int main(){
 	testInput();
-	testOutput();
 }

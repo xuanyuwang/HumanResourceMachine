@@ -7,15 +7,6 @@
 
 using namespace std;
 
-class InputBox: public Box{
-	public:
-		Node provide(){
-			Node result = this->top();
-			this->pop();
-			return result;
-		}
-};
-
 class OutputBox: public Box{
 	public:
 		void receive(Node element){
