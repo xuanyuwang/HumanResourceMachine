@@ -9,10 +9,10 @@ using namespace std;
 
 class Node{
 	private:
+	public:
 		// Store the values of different types into different pointers
 		int* intValue;
 		string* stringValue;
-	public:
 		Node* before;
 		Node* after;
 		Node(){
@@ -43,6 +43,20 @@ class Node{
 			}else{
 				return string("empty node");
 			}
+		}
+
+		void setValue(Node* src){
+			if(src->intValue != NULL){
+				delete this->string;
+				this->string = new string(*(src->stringValue));
+			}else if(src->stringValue != NULL){
+				delete this->intValue;
+				this->intValue = new int(*(src->intValue));
+			}
+			this->before = NULL;
+			this->after = NULL;
+
+			src->destroy();
 		}
 
 		void destroy(){
@@ -161,7 +175,12 @@ class Human{
 		}
 	public:
 		void copyfrom(Carpets* carpets, int pos){
-			this->grab(*carpets->at(pos));
+			this->grab(carpets->at(pos));
+		}
+
+		void copyto(Carpets* carpets, int pos){
+			Node* target = carpets->at(pos);
+			target->setValue(this->inHand);
 		}
 
 		void inbox(InputBox* ib){
