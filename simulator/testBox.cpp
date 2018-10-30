@@ -1,17 +1,23 @@
 #include <iostream>
 #include <cstdlib>
-#include "./simulator.h"
+#include "./Box.h"
+#include "./xassert.h"
 
 using namespace std;
 
+void testInit(){
+	Box b;
+	xassert(b.getLength() == 0);
+}
+
 void testEmpty(){
 	Box *b1 = new Box();
-	assert(b1->empty() == true);
+	xassert(b1->empty() == true);
 
 	Box *b2 = new Box();
 	Node n(3);
 	b2->push(n);
-	assert(b2->empty() == false);
+	xassert(b2->empty() == false);
 }
 
 void testPush(){
@@ -21,7 +27,7 @@ void testPush(){
 	b1.push(a);
 	b1.push(new Node(4));
 	b1.push(c);
-	assert(b1.toString().compare("ok 4 3 \n") == 0);
+	xassert(b1.toString().compare("ok 4 3 \n") == 0);
 }
 
 void testPop(){
