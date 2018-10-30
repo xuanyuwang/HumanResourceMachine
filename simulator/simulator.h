@@ -7,66 +7,6 @@
 
 using namespace std;
 
-class Node{
-	private:
-	public:
-		// Store the values of different types into different pointers
-		int* intValue;
-		string* stringValue;
-		Node* before;
-		Node* after;
-		Node(){
-			this->intValue = NULL;
-			this->stringValue = NULL;
-			this->before = NULL;
-			this->after = NULL;
-		}
-		Node(int i){
-			this->intValue = new int(i);
-			this->stringValue = NULL;
-			this->before = NULL;
-			this->after = NULL;
-		}
-
-		Node(string s){
-			this->stringValue = new string(s);
-			this->intValue = NULL;
-			this->before = NULL;
-			this->after = NULL;
-		}
-
-		string getRep(){
-			if(this->stringValue == NULL && this->intValue != NULL){
-				return std::to_string(*(this->intValue));
-			}else if(this->intValue == NULL && this->stringValue != NULL){
-				return *(this->stringValue);
-			}else{
-				return string("empty node");
-			}
-		}
-
-		void setValue(Node* src){
-			if(src->intValue != NULL){
-				delete this->string;
-				this->string = new string(*(src->stringValue));
-			}else if(src->stringValue != NULL){
-				delete this->intValue;
-				this->intValue = new int(*(src->intValue));
-			}
-			this->before = NULL;
-			this->after = NULL;
-
-			src->destroy();
-		}
-
-		void destroy(){
-			this->before = NULL;
-			this->after = NULL;
-			delete this->intValue;
-			delete this->stringValue;
-		}
-};
-
 class Box{
 	private:
 		int length;
