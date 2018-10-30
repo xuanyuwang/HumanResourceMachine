@@ -7,35 +7,6 @@
 
 using namespace std;
 
-class OutputBox: public Box{
-	public:
-		void receive(Node element){
-			this->push(element);
-		}
-		void receive(Node* element){
-			this->push(element);
-		}
-		void display(){
-			this->reverse();
-			cout << this->toString();
-		}
-};
-
-class Carpets: public Box{
-	public:
-		Node* at(int position){
-			std::list<Node>::iterator it;
-			int counter = 0;
-			for(it = this->elements.begin(); it != this->elements.end(); it++){
-				if(counter < position){
-					counter++;
-				}else{
-					return &(*it);
-				}
-			}
-		}
-};
-
 class Human{
 	private:
 		Node inHand;
@@ -73,10 +44,4 @@ class Human{
 			}
 		}
 };
-
-Box* makeCarpets(int quantity){
-	Box* carpets = new Box(quantity);
-	return carpets;
-}
-
 #endif
