@@ -1,21 +1,22 @@
-#ifndef SIMULATOR_H
-#define SIMULATOR_H
-#include <iostream>
-#include <list>
-#include <cstdlib>
-#include <string>
+#ifndef HUMAN_H
+#define HUMAN_H
+#include "./Node.h"
+#include "./Carpets.h"
+#include "./InputBox.h"
+#include "./OutputBox.h"
 
 using namespace std;
 
 class Human{
 	private:
-		Node inHand;
+		Node* inHand;
 		bool isHaving;
-		void grab(Node element){
+	public:
+		void grab(Node* element){
 			this->inHand = element;
 			this->isHaving = true;
 		}
-	public:
+
 		void copyfrom(Carpets* carpets, int pos){
 			this->grab(carpets->at(pos));
 		}
@@ -26,8 +27,7 @@ class Human{
 		}
 
 		void inbox(InputBox* ib){
-			this->inHand = ib->provide();
-			this->isHaving = true;
+			this->grab(ib->provide());
 		}
 
 		void outbox(OutputBox* ob){
@@ -37,7 +37,7 @@ class Human{
 			}
 		}
 
-		Node getInHand(){
+		Node* getInHand(){
 			if(this->isHaving){
 				return this->inHand;
 			}else{

@@ -45,11 +45,11 @@ void testTop(){
 	b.push(new Node(3));
 	b.push(new Node(4));
 	b.push(new Node("ok"));
-	assert(b.top().getRep().compare("ok") == 0);
+	assert(b.top()->getRep().compare("ok") == 0);
 	b.pop();
-	assert(b.top().getRep().compare("4") == 0);
+	assert(b.top()->getRep().compare("4") == 0);
 	b.pop();
-	assert(b.top().getRep().compare("3") == 0);
+	assert(b.top()->getRep().compare("3") == 0);
 }
 
 void testReverse(){

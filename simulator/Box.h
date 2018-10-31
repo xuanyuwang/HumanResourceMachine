@@ -42,8 +42,8 @@ class Box{
 			this->length--;
 		}
 
-		Node top(){
-			return this->elements.front();
+		Node* top(){
+			return &(this->elements.front());
 		}
 
 		void reverse(){

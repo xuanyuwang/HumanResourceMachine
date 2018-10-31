@@ -6,8 +6,8 @@ using namespace std;
 
 class InputBox: public Box{
 	public:
-		Node provide(){
-			Node result = this->top();
+		Node* provide(){
+			Node* result = this->top();
 			this->pop();
 			return result;
 		}
