@@ -1,9 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <random>
-#include "../simulator/InputBox.h"
-#include "../simulator/OutputBox.h"
-#include "../simulator/Human.h"
+#include "../../simulator/simulator.h"
 
 using namespace std;
 

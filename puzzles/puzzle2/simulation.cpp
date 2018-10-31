@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include "../simulator/simulator.h"
+#include "../../simulator/simulator.h"
 
 using namespace std;
 
