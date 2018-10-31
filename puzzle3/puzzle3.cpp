@@ -30,5 +30,6 @@ int main(){
 	human->copyfrom(carpets, 3);
 	human->outbox(ob);
 
-	ob->display();
+	ob->reverse();
+	assert(ob->toString().compare("B U G \n") == 0);
 }
