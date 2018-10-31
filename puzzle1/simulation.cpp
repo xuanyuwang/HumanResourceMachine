@@ -1,7 +1,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <random>
-#include "../simulator/simulator.h"
+#include "../simulator/InputBox.h"
+#include "../simulator/OutputBox.h"
+#include "../simulator/Human.h"
 
 using namespace std;
 
@@ -20,10 +22,13 @@ int main(){
 	OutputBox output;
 
 	generator(&input);
-	input.display();
+	string inputS = input.toString();
 	while(!input.empty()){
 	 	human.inbox(&input);
 		human.outbox(&output);
 	}
-	output.display();
+	
+	output.reverse();
+	string outputS = output.toString();
+	assert(outputS.compare(inputS) == 0);
 }
