@@ -28,7 +28,6 @@ int main(){
 		human.outbox(&output);
 	}
 	
-	output.reverse();
 	string outputS = output.toString();
 	assert(outputS.compare(inputS) == 0);
 }

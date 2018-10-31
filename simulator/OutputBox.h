@@ -12,10 +12,18 @@ class OutputBox: public Box{
 		void receive(Node* element){
 			this->push(element);
 		}
+		string toString(){
+			this->reverse();
+			string rep = "";
+			for(std::list<Node>::iterator it = this->elements.begin(); it != this->elements.end(); it++){
+				rep += (it->getRep() + " ");
+			}
+			rep += "\n";
+			this->reverse();
+			return rep;
+		}
 		void display(){
-			this->reverse();
 			cout << this->toString();
-			this->reverse();
 		}
 };
 #endif

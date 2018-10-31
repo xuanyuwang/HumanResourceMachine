@@ -28,7 +28,6 @@ des:
 	human.outbox(&ob);
 	if(!ib.empty()) goto des;
 	ob.display();
-	ob.reverse();
 	string output = ob.toString();
 	assert(output.compare(input) == 0);
 }
