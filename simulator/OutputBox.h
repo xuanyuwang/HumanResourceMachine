@@ -15,6 +15,7 @@ class OutputBox: public Box{
 		void display(){
 			this->reverse();
 			cout << this->toString();
+			this->reverse();
 		}
 };
 #endif
