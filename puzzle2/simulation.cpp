@@ -22,9 +22,13 @@ int main(){
 
 	generator(&ib);
 	ib.display();
+	string input = ib.toString();
 des:
 	human.inbox(&ib);
 	human.outbox(&ob);
 	if(!ib.empty()) goto des;
 	ob.display();
+	ob.reverse();
+	string output = ob.toString();
+	assert(output.compare(input) == 0);
 }
