@@ -1,5 +1,7 @@
 #include "./Human.h"
 #include "./xassert.h"
+#include "./InputBox.h"
+#include "./OutputBox.h"
 
 using namespace std;
 
@@ -26,7 +28,37 @@ void testCopyTo(){
 	assert(c.at(0)->getRep().compare("1") == 0);
 }
 
+void testInbox(){
+	InputBox ib;
+	ib.push(new Node(2));
+	ib.push(new Node(3));
+
+	Human h;
+
+	h.inbox(&ib);
+	assert(h.getInHand()->getRep().compare("3") == 0);
+}
+
+void testOutputBox(){
+	OutputBox ob;
+	Human h;
+	h.grab(new Node(3));
+	ob.receive(h.getInHand());
+	h.grab(new Node(2));
+	ob.receive(h.getInHand());
+	assert(ob.toString().compare("2 3 \n") == 0);
+}
+
+void testGetInhand(){
+	Human h;
+	h.grab(new Node(4));
+
+	assert(h.getInHand()->getRep().compare("4") == 0);
+}
+
 int main(){
 	testCopyfrom();
 	testCopyTo();
+	testInbox();
+	testOutputBox();
 }
