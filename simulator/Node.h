@@ -45,8 +45,6 @@ class Node{
 				this->destroy();
 			 	this->stringValue = new string(*(src->stringValue));
 			}
-
-			src->destroy();
 		}
 
 		void destroy(){

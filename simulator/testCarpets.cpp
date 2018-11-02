@@ -15,6 +15,12 @@ void testAt(){
 	assert(c.at(3)->getRep().compare("0") == 0);
 }
 
+void testInit(){
+	Carpets c(1);
+	assert(c.toString().compare("empty node \n") == 0);
+}
+
 int main(){
+	testInit();
 	testAt();
 }

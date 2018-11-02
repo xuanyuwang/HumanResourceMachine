@@ -6,6 +6,12 @@ using namespace std;
 
 class Carpets: public Box{
 	public:
+		Carpets(){
+		}
+
+		Carpets(int number):Box(number){
+		}
+
 		Node* at(int position){
 			std::list<Node>::iterator it;
 			int counter = 0;

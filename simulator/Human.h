@@ -23,7 +23,7 @@ class Human{
 
 		void copyto(Carpets* carpets, int pos){
 			Node* target = carpets->at(pos);
-			target->setValue(this->inHand);
+			target->setValue(this->getInHand());
 		}
 
 		void inbox(InputBox* ib){
