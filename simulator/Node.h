@@ -38,18 +38,17 @@ class Node{
 		}
 
 		void setValue(Node* src){
+			this->destroy();
 			if(src->intValue != NULL){
-				this->destroy();
 			 	this->intValue = new int(*(src->intValue));
 			}else if(src->stringValue != NULL){
-				this->destroy();
 			 	this->stringValue = new string(*(src->stringValue));
 			}
 		}
 
 		void destroy(){
-			delete this->intValue;
-			delete this->stringValue;
+			if(this->intValue != NULL) delete this->intValue;
+			if(this->stringValue != NULL) delete this->stringValue;
 			this->intValue = NULL;
 			this->stringValue = NULL;
 		}

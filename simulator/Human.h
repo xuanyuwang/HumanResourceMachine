@@ -9,18 +9,31 @@ using namespace std;
 
 class Human{
 	private:
+		/*
+		Life cycle of inHand:
+			- Initialization: NULL
+			- Grab from inbox: not NULL
+			- outbox: set back to NULL
+			- Copyfrom: create a new Node by Human it self
+			- Copyto: do not set to NULL after doing this
+		*/
 		Node* inHand;
 	public:
 		Human(){
 			this->inHand = NULL;
 		}
-		
+
 		void grab(Node* element){
 			this->inHand = element;
 		}
 
 		void copyfrom(Carpets* carpets, int pos){
-			this->grab(carpets->at(pos));
+			if(this->inHand != NULL){
+				delete this->inHand;
+			}
+			Node* src = carpets->at(pos);
+			this->inHand = new Node();
+			this->inHand->setValue(src);
 		}
 
 		void copyto(Carpets* carpets, int pos){

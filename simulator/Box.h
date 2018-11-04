@@ -24,6 +24,7 @@ class Box{
 			}
 		}
 
+		// Tell if the list is empty
 		bool empty(){
 			return this->elements.empty();
 		}

@@ -46,7 +46,7 @@ void testOutputBox(){
 	ob.receive(h.getInHand());
 	h.grab(new Node(2));
 	ob.receive(h.getInHand());
-	assert(ob.toString().compare("2 3 \n") == 0);
+	assert(ob.toString().compare("3 2 \n") == 0);
 }
 
 void testGetInhand(){
