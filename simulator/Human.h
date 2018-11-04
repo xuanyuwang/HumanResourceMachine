@@ -10,11 +10,13 @@ using namespace std;
 class Human{
 	private:
 		Node* inHand;
-		bool isHaving;
 	public:
+		Human(){
+			this->inHand = NULL;
+		}
+		
 		void grab(Node* element){
 			this->inHand = element;
-			this->isHaving = true;
 		}
 
 		void copyfrom(Carpets* carpets, int pos){
@@ -31,14 +33,14 @@ class Human{
 		}
 
 		void outbox(OutputBox* ob){
-			if(this->isHaving){
+			if(this->inHand != NULL){
 				ob->receive(this->inHand);
-				this->isHaving = false;
+				this->inHand = NULL;
 			}
 		}
 
 		Node* getInHand(){
-			if(this->isHaving){
+			if(this->inHand != NULL){
 				return this->inHand;
 			}else{
 			}
