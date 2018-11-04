@@ -46,7 +46,7 @@ void testOutputBox(){
 	ob.receive(h.getInHand());
 	h.grab(new Node(2));
 	ob.receive(h.getInHand());
-	assert(ob.toString().compare("2 3 \n") == 0);
+	assert(ob.toString().compare("3 2 \n") == 0);
 }
 
 void testGetInhand(){
@@ -56,9 +56,19 @@ void testGetInhand(){
 	assert(h.getInHand()->getRep().compare("4") == 0);
 }
 
+void testAdd(){
+	Human* h = new Human();
+	h->grab(new Node(4));
+	Carpets* c = new Carpets(1);
+	c->at(0)->setValue(new Node(5));
+	h->add(c, 0);
+	assert(h->getInHand()->getRep().compare("9") == 0);
+}
+
 int main(){
 	testCopyfrom();
 	testCopyTo();
 	testInbox();
 	testOutputBox();
+	testAdd();
 }

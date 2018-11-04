@@ -47,6 +47,11 @@ class Node{
 			}
 		}
 
+		void add(Node* n){
+			int value = std::stoi(n->getRep());
+			*(this->intValue) += value;
+		}
+
 		void destroy(){
 			delete this->intValue;
 			delete this->stringValue;
