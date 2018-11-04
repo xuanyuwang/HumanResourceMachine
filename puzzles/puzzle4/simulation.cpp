@@ -27,6 +27,7 @@ des:
 	h->outbox(ob);
 	if(!ib->empty()) goto des;
 
+	ob->display();
 	string output = ob->toString();
 	assert(output.compare("6 7 4 5 2 3 0 1 \n") == 0);
 }
