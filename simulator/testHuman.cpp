@@ -56,9 +56,19 @@ void testGetInhand(){
 	assert(h.getInHand()->getRep().compare("4") == 0);
 }
 
+void testAdd(){
+	Human* h = new Human();
+	h->grab(new Node(4));
+	Carpets* c = new Carpets(1);
+	c->at(0)->setValue(new Node(5));
+	h->add(c, 0);
+	assert(h->getInHand()->getRep().compare("9") == 0);
+}
+
 int main(){
 	testCopyfrom();
 	testCopyTo();
 	testInbox();
 	testOutputBox();
+	testAdd();
 }

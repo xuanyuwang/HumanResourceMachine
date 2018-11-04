@@ -33,6 +33,13 @@ void testGetRep(){
 	xassert(c.getRep().compare("hello") == 0);
 }
 
+void testAdd(){
+	Node* a = new Node(3);
+	Node* b = new Node(4);
+	a->add(b);
+	assert(a->getRep().compare("7") == 0);
+}
+
 void testSetValue(){
 	Node a;
 	Node* b = new Node(3);
@@ -50,4 +57,5 @@ int main(){
 	testInitAsString();
 	testGetRep();
 	testSetValue();
+	testAdd();
 }

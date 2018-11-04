@@ -45,6 +45,11 @@ class Node{
 			}
 		}
 
+		void add(Node* n){
+			int value = std::stoi(n->getRep());
+			*(this->intValue) += value;
+		}
+
 		//TODO: fix this function. It will change the src's value
 		void destroy(){
 			if(this->intValue != NULL){
