@@ -39,7 +39,6 @@ class Human{
 		void copyto(Carpets* carpets, int pos){
 			Node* target = carpets->at(pos);
 			target->setValue(this->getInHand());
-			this->inHand = NULL;
 		}
 
 		void add(Carpets* carpets, int pos){

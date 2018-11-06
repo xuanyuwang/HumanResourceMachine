@@ -48,7 +48,7 @@ class Node{
 		}
 
 		void add(Node* n){
-			int value = std::stoi(n->getRep());
+			int value = *(n->getInt());
 			*(this->intValue) += value;
 		}
 
