@@ -65,7 +65,7 @@ class Box{
 
 		string toString(){
 			string rep = "";
-			for(std::list<Node>::iterator it = this->elements.begin(); it != this->elements.end(); it++){
+			for(auto it = this->elements.begin(); it != this->elements.end(); it++){
 				rep += (it->getRep() + " ");
 			}
 			rep += "\n";
