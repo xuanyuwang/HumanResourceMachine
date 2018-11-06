@@ -24,6 +24,18 @@ class Box{
 			}
 		}
 
+		Node* at(int position){
+			std::list<Node>::iterator it;
+			int counter = 0;
+			for(it = this->elements.begin(); it != this->elements.end(); it++){
+				if(counter < position){
+					counter++;
+				}else{
+					return &(*it);
+				}
+			}
+		}
+
 		// Tell if the list is empty
 		bool empty(){
 			return this->elements.empty();

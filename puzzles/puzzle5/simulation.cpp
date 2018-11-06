@@ -29,4 +29,7 @@ des:
 
 	string ouput = ob->toString();
 	cout << ouput << endl;
+
+	for(int i = 0; i < 4; i++){
+	}
 }

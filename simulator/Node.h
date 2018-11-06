@@ -50,6 +50,14 @@ class Node{
 			*(this->intValue) += value;
 		}
 
+		int* getInt(){
+			return this->intValue;
+		}
+
+		string* getString(){
+			return this->stringValue;
+		}
+
 		//TODO: fix this function. It will change the src's value
 		void destroy(){
 			if(this->intValue != NULL){
