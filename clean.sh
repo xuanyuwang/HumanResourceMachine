@@ -1,2 +1,1 @@
-#!/bin/bash
-rm **/*.out
+find . -name *.out -delete
