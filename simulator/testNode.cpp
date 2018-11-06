@@ -41,7 +41,7 @@ void testAdd(){
 }
 
 void testSetValue(){
-	Node a;
+	Node a(1);
 	Node* b = new Node(3);
 	Node c("hi");
 
@@ -57,5 +57,5 @@ int main(){
 	testInitAsString();
 	testGetRep();
 	testSetValue();
-	testAdd();
+	//testAdd();
 }

@@ -38,9 +38,11 @@ class Node{
 		}
 
 		void setValue(Node* src){
+			this->destroy();
 			if(src->intValue != NULL){
 			 	this->intValue = new int(*(src->intValue));
 			}else if(src->stringValue != NULL){
+				string* a = new string(*(src->stringValue));
 			 	this->stringValue = new string(*(src->stringValue));
 			}
 		}
@@ -61,11 +63,10 @@ class Node{
 		//TODO: fix this function. It will change the src's value
 		void destroy(){
 			if(this->intValue != NULL){
-				cout << "this.intvalue: " << this->intValue << " value: " << *(this->intValue) << endl;
-				delete this->intValue;
+				//delete this->intValue;
 			}
 			if(this->stringValue != NULL){
-				delete this->stringValue;
+				//delete this->stringValue;
 			}
 			this->intValue = NULL;
 			this->stringValue = NULL;
