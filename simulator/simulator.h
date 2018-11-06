@@ -6,5 +6,6 @@
 #include "./Human.h"
 #include "./Node.h"
 #include "./Carpets.h"
+#include "./xassert.h"
 
 #endif
