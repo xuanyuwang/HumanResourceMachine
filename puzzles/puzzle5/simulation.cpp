@@ -1,4 +1,5 @@
 #include "../../simulator/simulator.h"
+#include "../../simulator/xassert.h"
 #include <cstdlib>
 
 using namespace std;
@@ -11,14 +12,16 @@ void generator(InputBox* ib){
 }
 
 int main(){
-	Human* h;
+	Human* h = new Human();
 	Carpets* c = new Carpets(3);
 	InputBox* ib = new InputBox();
 	OutputBox* ob = new OutputBox();
 
 	generator(ib);
-	string input = ib->toString();
-	cout << input << endl;
+	int* input = new int[8];
+	for(int i = 0; i < 8; i++){
+		input[i] = *(ib->at(i)->getInt());
+	}
 des:
 	h->inbox(ib);
 	h->copyto(c, 0);
@@ -27,9 +30,14 @@ des:
 	h->outbox(ob);
 	if(!ib->empty()) goto des;
 
-	string ouput = ob->toString();
-	cout << ouput << endl;
+	ob->reverse();
 
 	for(int i = 0; i < 4; i++){
+		int result = *(ob->at(i)->getInt());
+		int add1 = input[i * 2];
+		int add2 = input[i * 2 + 1];
+		xassert(result == add1 + add2,
+				"wrong result of pos " + std::to_string(i) + "expected " + to_string(result) + " added from " + to_string(add1)
+				   + " and " + to_string(add2));
 	}
 }
