@@ -10,24 +10,21 @@ using namespace std;
 
 class Box{
 	private:
-		int length;
-	public:
 		std::list<Node> elements;
+	public:
 
 		Box(){
-			this->length = 0;
-		}
+		};
 
 		Box(int numberOfNodes){
-			for(int i = 0; i < numberOfNodes; i++){
-				this->push(new Node());
-			}
+			Node emptyNode;
+		    this->elements.assign(numberOfNodes, emptyNode);
 		}
 
 		Node* at(int position){
-			std::list<Node>::iterator it;
+			auto it = this->elements.begin();
 			int counter = 0;
-			for(it = this->elements.begin(); it != this->elements.end(); it++){
+			for(; it != this->elements.end(); it++){
 				if(counter < position){
 					counter++;
 				}else{
@@ -41,32 +38,26 @@ class Box{
 			return this->elements.empty();
 		}
 
-		void push(Node element){
-			this->elements.push_front(element);
-			this->length++;
+		void append(Node element){
+			this->elements.push_back(element);
 		}
-		void push(Node* element){
-			this->elements.push_front(*element);
-			this->length++;
+		void append(Node* element){
+			this->elements.push_back(*element);
 		}
 
-		void pop(){
-			this->elements.pop_front();
-			this->length--;
+		void removeFirst(){
+			auto it = this->elements.begin();
+			this->elements.erase(it);
 		}
 
-		Node* top(){
+		Node* first(){
 			return &(this->elements.front());
 		}
 
-		void reverse(){
-			this->elements.reverse();
-		}
-
 		string toString(){
-			string rep = "";
+			string rep;
 			for(auto it = this->elements.begin(); it != this->elements.end(); it++){
-				rep += (it->getRep() + " ");
+				rep += (it->toString() + " ");
 			}
 			rep += "\n";
 			return rep;
@@ -76,8 +67,8 @@ class Box{
 			cout << this->toString();
 		}
 
-		int getLength(){
-			return this->length;
+		Node* operator[](int pos){
+			return this->at(pos);
 		}
 };
 
