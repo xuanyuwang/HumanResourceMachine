@@ -10,7 +10,7 @@ void generator(InputBox* input){
 	int N = 3;
 	for(int i = 0; i < N; i++){
 		int number = rd() % 10;
-		input->push(number);
+		input->append(new Node(number));
 	}
 }
 
@@ -27,5 +27,5 @@ int main(){
 	}
 	
 	string outputS = output.toString();
-	assert(outputS.compare(inputS) == 0);
+	assert(outputS == inputS);
 }

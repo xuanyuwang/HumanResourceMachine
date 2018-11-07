@@ -4,7 +4,7 @@ using namespace std;
 
 void generator(InputBox* ib){
 	for(int i = 0; i < 8; i++){
-		ib->push(new Node(i));
+		ib->append(new Node(i));
 	}
 }
 
@@ -28,5 +28,5 @@ des:
 	if(!ib->empty()) goto des;
 
 	string output = ob->toString();
-	assert(output.compare("6 7 4 5 2 3 0 1 \n") == 0);
+	assert(output == "1 0 3 2 5 4 7 6 \n");
 }

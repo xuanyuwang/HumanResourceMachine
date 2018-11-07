@@ -1,11 +1,12 @@
 #include "../../simulator/simulator.h"
+#include <random>
 
 using namespace std;
 
 void generator(InputBox* ib){
-	srand(9);
+    random_device rd;
 	for(int i = 0; i < 8; i++){
-		ib->push(new Node(rand() % 20 - 10));
+		ib->append(new Node(rd() % 20 - 10));
 	}
 }
 
@@ -30,7 +31,6 @@ int main(){
 		h->outbox(ob);
 	}while(!ib->empty());
 
-	ob->reverse();
 	for(int i = 0; i < 8; i++){
 		int result = *(ob->at(i)->getInt());
 		int src = input[i];

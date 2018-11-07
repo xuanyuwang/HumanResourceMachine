@@ -5,14 +5,14 @@
 using namespace std;
 
 void generator(InputBox* input){
-	input->push(new Node("C"));
-	input->push(new Node("E"));
-	input->push(new Node("X"));
-	input->push(new Node("E"));
-	input->push(new Node("O"));
-	input->push(new Node("T"));
-	input->push(new Node("U"));
-	input->push(new Node("A"));
+    input->append(new Node("A"));
+    input->append(new Node("U"));
+    input->append(new Node("T"));
+    input->append(new Node("O"));
+	input->append(new Node("E"));
+	input->append(new Node("X"));
+	input->append(new Node("E"));
+    input->append(new Node("C"));
 }
 
 int main(){
@@ -21,13 +21,15 @@ int main(){
 	OutputBox ob;
 
 	generator(&ib);
-	ib.display();
 	string input = ib.toString();
-des:
-	human.inbox(&ib);
-	human.outbox(&ob);
-	if(!ib.empty()) goto des;
-	ob.display();
+
+	//**********************
+	do{
+		human.inbox(&ib);
+		human.outbox(&ob);
+	}while (!ib.empty());
+	//**********************
+
 	string output = ob.toString();
-	assert(output.compare(input) == 0);
+	assert(output == input);
 }

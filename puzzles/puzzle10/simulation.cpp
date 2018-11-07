@@ -1,11 +1,12 @@
 #include "../../simulator/simulator.h"
+#include <random>
 
 using namespace std;
 
 void generator(InputBox* ib){
-    srand(8);
+    random_device rd;
     for(int i = 0; i < 8; i++){
-        ib->push(new Node(rand() % 20 - 10));
+        ib->append(new Node(rd() % 20 - 10));
     }
 }
 
@@ -16,17 +17,15 @@ int main(){
     Carpets* c = new Carpets(3);
 
     generator(ib);
-    ib->display();
     int* input = new int[8];
     for(int i = 0; i < 8; i++){
-        input[i] = *(ib->at(0)->getInt());
+        input[i] = *((*ib)[i]->getInt());
     }
 
     do{
         h->inbox(ib);
         h->copyto(c, 0);
         h->add(c, 0);
-        c->display();
 
         h->copyto(c, 0);
         h->add(c, 0);
@@ -37,7 +36,9 @@ int main(){
         h->outbox(ob);
     }while(!ib->empty());
 
-    ob->reverse();
-    ob->display();
-
+    for(int i = 0; i < 8; i++){
+        int out = *((*ob)[i]->getInt());
+        int in = input[i];
+        assert(out == in * 8);
+    }
 }

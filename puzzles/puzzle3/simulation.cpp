@@ -4,15 +4,15 @@
 using namespace std;
 
 void generator(InputBox* input, Carpets* carpets){
-	input->push(new Node(-99));
-	input->push(new Node(-99));
-	input->push(new Node(-99));
-	carpets->push(new Node("E"));
-	carpets->push(new Node("B"));
-	carpets->push(new Node("G"));
-	carpets->push(new Node("X"));
-	carpets->push(new Node("J"));
-	carpets->push(new Node("U"));
+	input->append(new Node(-99));
+	input->append(new Node(-99));
+	input->append(new Node(-99));
+	carpets->append(new Node("U"));
+	carpets->append(new Node("J"));
+	carpets->append(new Node("X"));
+	carpets->append(new Node("G"));
+	carpets->append(new Node("B"));
+	carpets->append(new Node("E"));
 }
 
 int main(){

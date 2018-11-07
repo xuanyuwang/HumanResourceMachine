@@ -1,13 +1,14 @@
 #include "../../simulator/simulator.h"
 #include "../../simulator/xassert.h"
 #include <cstdlib>
+#include <random>
 
 using namespace std;
 
 void generator(InputBox* ib){
-	srand(10);
+    random_device rd;
 	for(int i = 0; i < 8; i++){
-		ib->push(new Node(rand() % 20 - 10));
+		ib->append(new Node(rd() % 20 - 10));
 	}
 }
 
@@ -29,8 +30,6 @@ des:
 	h->add(c, 0);
 	h->outbox(ob);
 	if(!ib->empty()) goto des;
-
-	ob->reverse();
 
 	for(int i = 0; i < 4; i++){
 		int result = *(ob->at(i)->getInt());
