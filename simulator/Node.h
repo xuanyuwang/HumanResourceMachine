@@ -1,3 +1,5 @@
+#include <utility>
+
 #ifndef NODE_H
 #define NODE_H 
 #include <iostream>
@@ -5,45 +7,40 @@
 #include <cstdlib>
 #include <string>
 
+#define EMPTY_NODE "empty node"
+
 using namespace std;
 
 class Node{
 	private:
+    	int* intValue;
+    	string* stringValue;
 	public:
-		// Store the values of different types into different pointers
-		int* intValue;
-		string* stringValue;
 		Node(){
-			this->intValue = NULL;
-			this->stringValue = NULL;
-		}
-		Node(int i){
-			this->intValue = new int(i);
-			this->stringValue = NULL;
+			this->intValue = nullptr;
+			this->stringValue = nullptr;
 		}
 
-		Node(string s){
-			this->stringValue = new string(s);
-			this->intValue = NULL;
-		}
+	explicit Node(int i);
 
-		string getRep(){
-			if(this->stringValue == NULL && this->intValue != NULL){
+	explicit Node(string s);
+
+		string toString(){
+			if(this->stringValue == nullptr && this->intValue != nullptr){
 				return std::to_string(*(this->intValue));
-			}else if(this->intValue == NULL && this->stringValue != NULL){
+			}else if(this->intValue == nullptr && this->stringValue != nullptr){
 				return *(this->stringValue);
 			}else{
-				return string("empty node");
+				return string(EMPTY_NODE);
 			}
 		}
 
 		void setValue(Node* src){
 			this->destroy();
-			if(src->intValue != NULL){
-			 	this->intValue = new int(*(src->intValue));
-			}else if(src->stringValue != NULL){
-				string* a = new string(*(src->stringValue));
-			 	this->stringValue = new string(*(src->stringValue));
+			if(src->getInt() != nullptr){
+			 	this->intValue = new int(*(src->getInt()));
+			}else if(src->getString() != nullptr){
+			 	this->stringValue = new string(*(src->getString()));
 			}
 		}
 
@@ -60,17 +57,22 @@ class Node{
 			return this->stringValue;
 		}
 
-		//TODO: fix this function. It will change the src's value
 		void destroy(){
-			if(this->intValue != NULL){
-				//delete this->intValue;
-			}
-			if(this->stringValue != NULL){
-				//delete this->stringValue;
-			}
-			this->intValue = NULL;
-			this->stringValue = NULL;
+			delete this->intValue;
+			delete this->stringValue;
+			this->intValue = nullptr;
+			this->stringValue = nullptr;
 		}
 };
+
+Node::Node(int i) {
+	this->intValue = new int(i);
+	this->stringValue = nullptr;
+}
+
+Node::Node(string s) {
+	this->stringValue = new string(s);
+	this->intValue = nullptr;
+}
 
 #endif

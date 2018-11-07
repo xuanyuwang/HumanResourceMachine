@@ -9,35 +9,37 @@ using namespace std;
 
 void testInit(){
 	Node n;
-	xassert(n.intValue == NULL);
-	xassert(n.stringValue == NULL);
+	assert(n.getInt() == nullptr);
+	assert(n.getString() == nullptr);
 }
 
 void testInitAsInt(){
 	Node n(3);
-	xassert(*(n.intValue) == 3);
+	assert(*(n.getInt()) == 3);
 }
 
 void testInitAsString(){
-	Node n("hello");
-	xassert((*(n.stringValue)).compare("hello") == 0);
+	string s = "hello";
+	Node n(s);
+	assert((*(n.getString())) == "hello");
 }
 
-void testGetRep(){
+void testToString(){
 	Node a;
 	Node b(3);
 	Node c("hello");
 
-	xassert(a.getRep().compare("empty node") == 0, "Not empty");
-	xassert(b.getRep().compare("3") == 0);
-	xassert(c.getRep().compare("hello") == 0);
+	assert(a.toString() == "empty node");
+	assert(b.toString() == "3");
+	assert(c.toString() == "hello");
 }
 
 void testAdd(){
 	Node* a = new Node(3);
 	Node* b = new Node(4);
 	a->add(b);
-	assert(a->getRep().compare("7") == 0);
+	assert(a->toString() == "7");
+	assert(b->toString() == "4");
 }
 
 void testSetValue(){
@@ -46,16 +48,23 @@ void testSetValue(){
 	Node c("hi");
 
 	a.setValue(b);
-	xassert(a.getRep().compare("3") == 0, "set to int");
+	assert(a.toString() == "3");
+	assert(b->toString() == "3");
+	a.destroy();
+	assert(b->toString() == "3");
+
 	a.setValue(&c);
-	xassert(a.getRep().compare("hi") == 0, "set it to string");
+	assert(a.toString() == "hi");
+	assert(c.toString() == "hi");
+	a.destroy();
+	assert(c.toString() == "hi");
 }
 
 int main(){
 	testInit();
 	testInitAsInt();
 	testInitAsString();
-	testGetRep();
+	testToString();
 	testSetValue();
-	//testAdd();
+	testAdd();
 }
