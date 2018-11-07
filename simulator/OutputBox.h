@@ -7,23 +7,14 @@ using namespace std;
 class OutputBox: public Box{
 	public:
 		void receive(Node element){
-			this->push(element);
+			Node n;
+			n.setValue(&element);
+			this->append(n);
 		}
 		void receive(Node* element){
-			this->push(element);
-		}
-		string toString(){
-			this->reverse();
-			string rep = "";
-			for(std::list<Node>::iterator it = this->elements.begin(); it != this->elements.end(); it++){
-				rep += (it->getRep() + " ");
-			}
-			rep += "\n";
-			this->reverse();
-			return rep;
-		}
-		void display(){
-			cout << this->toString();
+			Node n;
+			n.setValue(element);
+			this->append(n);
 		}
 };
 #endif

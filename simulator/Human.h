@@ -17,28 +17,20 @@ class Human{
 			- Copyfrom: create a new Node by Human it self
 			- Copyto: do not set to NULL after doing this
 		*/
-		Node* inHand;
+		Node* inHand = new Node();
+		bool isHaving = false;
 	public:
-		Human(){
-			this->inHand = NULL;
-		}
+		Human() = default;
 
-		void grab(Node* element){
-			this->inHand = element;
+	void copyto(Carpets* carpets, int pos){
+			Node* target = (*carpets)[pos];
+			target->setValue(this->inHand);
 		}
 
 		void copyfrom(Carpets* carpets, int pos){
-			if(this->inHand != NULL){
-				delete this->inHand;
-			}
-			Node* src = carpets->at(pos);
-			this->inHand = new Node();
+			Node* src = (*carpets)[pos];
 			this->inHand->setValue(src);
-		}
-
-		void copyto(Carpets* carpets, int pos){
-			Node* target = carpets->at(pos);
-			target->setValue(this->getInHand());
+			this->isHaving = true;
 		}
 
 		void add(Carpets* carpets, int pos){
@@ -47,21 +39,20 @@ class Human{
 		}
 
 		void inbox(InputBox* ib){
-			this->grab(ib->provide());
+			Node* first = ib->provide();
+			this->inHand->setValue(first);
+			this->isHaving = true;
 		}
 
 		void outbox(OutputBox* ob){
-			if(this->inHand != NULL){
+			if(this->isHaving){
 				ob->receive(this->inHand);
-				this->inHand = NULL;
+				this->isHaving = false;
 			}
 		}
 
 		Node* getInHand(){
-			if(this->inHand != NULL){
-				return this->inHand;
-			}else{
-			}
+			return this->inHand;
 		}
 };
 #endif

@@ -5,11 +5,13 @@
 using namespace std;
 
 class Carpets: public Box{
-	public:
-		Carpets(){
-		}
+public:
+    Carpets():Box(){
 
-		Carpets(int number):Box(number){
-		}
+    }
+
+    explicit Carpets(int n): Box(n){
+
+    }
 };
 #endif

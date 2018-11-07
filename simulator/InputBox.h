@@ -7,8 +7,8 @@ using namespace std;
 class InputBox: public Box{
 	public:
 		Node* provide(){
-			Node* result = this->top();
-			this->pop();
+			Node* result = this->first();
+			this->removeFirst();
 			return result;
 		}
 };

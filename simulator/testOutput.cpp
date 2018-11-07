@@ -1,17 +1,17 @@
 #include <iostream>
 #include "./OutputBox.h"
-#include "./xassert.h"
 
 using namespace std;
 
-void testOutput(){
+void testReceive(){
 	OutputBox ob;
 	ob.receive(new Node(3));
-	xassert(ob.toString().compare("3 \n") == 0);
+	ob.receive(new Node("hi"));
+	assert(ob.toString() == "3 hi \n");
 }
 
 
 int main(){
-	testOutput();
+    testReceive();
 }
 

@@ -3,13 +3,13 @@
 
 using namespace std;
 
-void testInput(){
+void testProvide(){
 	InputBox ib;
-	ib.push(new Node(4));
-	assert(ib.provide()->getRep().compare("4") == 0);
+	ib.append(new Node(4));
+	assert(ib.provide()->toString() == "4");
 }
 
 
 int main(){
-	testInput();
+    testProvide();
 }

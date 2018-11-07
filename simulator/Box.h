@@ -10,21 +10,21 @@ using namespace std;
 
 class Box{
 	private:
-		std::list<Node> elements;
+		std::list<Node>* elements = new std::list<Node>();
 	public:
 
 		Box(){
 		};
 
-		Box(int numberOfNodes){
+    explicit Box(int numberOfNodes){
 			Node emptyNode;
-		    this->elements.assign(numberOfNodes, emptyNode);
+		    this->elements->assign(static_cast<unsigned long>(numberOfNodes), emptyNode);
 		}
 
 		Node* at(int position){
-			auto it = this->elements.begin();
+			auto it = this->elements->begin();
 			int counter = 0;
-			for(; it != this->elements.end(); it++){
+			for(; it != this->elements->end(); it++){
 				if(counter < position){
 					counter++;
 				}else{
@@ -35,28 +35,28 @@ class Box{
 
 		// Tell if the list is empty
 		bool empty(){
-			return this->elements.empty();
+			return this->elements->empty();
 		}
 
 		void append(Node element){
-			this->elements.push_back(element);
+			this->elements->push_back(element);
 		}
 		void append(Node* element){
-			this->elements.push_back(*element);
+			this->elements->push_back(*element);
 		}
 
 		void removeFirst(){
-			auto it = this->elements.begin();
-			this->elements.erase(it);
+			auto it = this->elements->begin();
+			this->elements->erase(it);
 		}
 
 		Node* first(){
-			return &(this->elements.front());
+			return &(this->elements->front());
 		}
 
 		string toString(){
 			string rep;
-			for(auto it = this->elements.begin(); it != this->elements.end(); it++){
+			for(auto it = this->elements->begin(); it != this->elements->end(); it++){
 				rep += (it->toString() + " ");
 			}
 			rep += "\n";
@@ -69,6 +69,10 @@ class Box{
 
 		Node* operator[](int pos){
 			return this->at(pos);
+		}
+
+		~Box(){
+			delete this->elements;
 		}
 };
 

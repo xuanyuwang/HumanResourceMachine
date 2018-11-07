@@ -36,11 +36,14 @@ class Node{
 		}
 
 		void setValue(Node* src){
-			this->destroy();
 			if(src->getInt() != nullptr){
 			 	this->intValue = new int(*(src->getInt()));
+			 	delete this->stringValue;
+			 	this->stringValue = nullptr;
 			}else if(src->getString() != nullptr){
 			 	this->stringValue = new string(*(src->getString()));
+			 	delete this->intValue;
+			 	this->intValue = nullptr;
 			}
 		}
 
@@ -58,8 +61,8 @@ class Node{
 		}
 
 		void destroy(){
-			delete this->intValue;
-			delete this->stringValue;
+//			delete this->intValue;
+//			delete this->stringValue;
 			this->intValue = nullptr;
 			this->stringValue = nullptr;
 		}
