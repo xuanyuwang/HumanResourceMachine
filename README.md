@@ -4,6 +4,5 @@ If you have played this game you might no it's not easy to solve a resolve by us
 
 # Solutions
 
-## Puzzle 1
-
-[Solution](./puzzles/puzzle1/README.md)
+| Puzzle 1 | [Solution](./puzzles/puzzle1/README.md) |
+------------------------------------------------------
