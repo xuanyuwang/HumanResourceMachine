@@ -4,5 +4,7 @@ If you have played this game you might no it's not easy to solve a resolve by us
 
 # Solutions
 
-| Puzzle 1 | [Solution](./puzzles/puzzle1/README.md) |
-------------------------------------------------------
+| Puzzle    |                  Solution                | Size              | Speed |
+|-----------|------------------------------------------|-------------------|------------|
+| Puzzle 1  | [Solution](./puzzles/puzzle1/README.md)  | :heavy_check_mark: | :heavy_check_mark: |
+| Puzzle 12 | [Solution](./puzzles/puzzle12/README.md) | :heavy_check_mark: | :heavy_check_mark: |
