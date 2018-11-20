@@ -27,7 +27,7 @@ int main(){
 	do{
 		do{
 			h->inbox(ib);
-		}while(!ib->empty() && h->getInHand()->getRep() == "0");
+		}while(!ib->empty() && h->getInHand()->toString() == "0");
 		h->outbox(ob);
 	}while(!ib->empty());
 

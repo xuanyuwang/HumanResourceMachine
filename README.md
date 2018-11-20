@@ -11,6 +11,7 @@ If you have played this game you might no it's not easy to solve a resolve by us
 | Puzzle 3  | [Solution](./puzzles/puzzle3/README.md)  | :heavy_check_mark: | :heavy_check_mark: |
 | Puzzle 4  | [Solution](./puzzles/puzzle4/README.md)  | :heavy_check_mark: | :heavy_check_mark: |
 | Puzzle 6  | [Solution](./puzzles/puzzle6/README.md)  | :heavy_check_mark: | :heavy_check_mark: |
+| Puzzle 7  | [Solution](./puzzles/puzzle7/README.md)  | :heavy_check_mark: | :heavy_check_mark: |
 | Puzzle 8  | [Solution](./puzzles/puzzle8/README.md)  | :heavy_check_mark: | :heavy_check_mark: |
 | Puzzle 10 | [Solution](./puzzles/puzzle12/README.md)  | :heavy_check_mark: | :heavy_check_mark: |
 | Puzzle 12 | [Solution](./puzzles/puzzle12/README.md) | :heavy_check_mark: | :heavy_check_mark: |
